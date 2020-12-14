@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams  } from 'react-router-dom'
-import  { getSingleCoin } from '../components/api'
+import  { getSingleCoin } from '../lib/api'
 
 
 function CoinShow(){

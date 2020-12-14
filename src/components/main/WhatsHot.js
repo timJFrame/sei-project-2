@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
+
 import React from 'react'
 import { TwitterTimelineEmbed } from 'react-twitter-embed'
-// import GainersLosers from './GainersLosers'
-import { getAllCoins } from './api'
+import { getAllCoins } from '../lib/api'
 
 const compare = (a, b) => {
 
@@ -47,7 +46,7 @@ function WhatsHot() {
 
 
   return (
-    <div className="whatsHotContainer">
+    <div className="container is-fluid whatsHotContainer">
       <div className="tweets">
 
         <div className="bitcoin-tweets">
@@ -83,8 +82,13 @@ function WhatsHot() {
             screenName="BITCOlNCASH"
             options={{ height: 400 }}/>
         </div>
+       
       </div>
-      <div className="gainersLosers">
+
+
+
+      <div className="container is-fluid gainersLosers">
+        <hr/>
         <div className="losersContainer">
           <h2>Biggest Losers</h2>
           {!ten.first ? <p>Loading top losers</p> :
@@ -94,7 +98,9 @@ function WhatsHot() {
               </div>
             ))
           }
+          
         </div>
+        <hr/>
         <div className="gainersContainer">
           <h2>Biggest Gainers</h2>
           {!ten.last ? <p>Loading top gainers</p> :
@@ -105,10 +111,9 @@ function WhatsHot() {
             ))
           }
         </div>
-
-
-
+        <hr/>
       </div>
+      
     </div>
   )
 }
