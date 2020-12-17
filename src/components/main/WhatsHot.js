@@ -36,7 +36,7 @@ function WhatsHot() {
       console.log(lastTen)
       setTen({
         first: firstTen,
-        last: lastTen,
+        last: lastTen.reverse(),
       })
     }
     getData()
