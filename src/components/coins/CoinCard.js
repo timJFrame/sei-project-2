@@ -27,7 +27,7 @@ function CoinCard({ id , rank, logo_url, name, symbol, price, market_cap, ...pro
           </div>
 
           <div className="column">
-            <h4><span className="mobile-title">Price: </span>{price}</h4>
+            <h4><span className="mobile-title">Price: </span>{parseFloat(price).toFixed(2)}</h4>
           </div>
 
           <div className="column">
