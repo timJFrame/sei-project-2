@@ -40,7 +40,10 @@ function WhatsHot() {
       })
     }
     getData()
-
+    const interval = setInterval(() => {
+      getData()
+    }, 10000)
+    return () => clearInterval(interval)
   }, [])
 
 
