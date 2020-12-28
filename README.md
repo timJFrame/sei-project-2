@@ -90,6 +90,6 @@ You can find a live version of the app here: [Crypto Show](https://cryptoshow.ne
 
 <h3>Future Features</h3>
 <ul>
-<li>Update 'I Could Have What!!' to search for more than two currencies</li>
+<li>Update 'I Could Have What!!' page to search for more than two currencies</li>
 <li>Add more content to the 'Whats Hot? page</li>
  </ul>
