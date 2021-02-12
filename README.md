@@ -67,11 +67,15 @@ You can find a live version of the app here: [Crypto Show](https://cryptoshow.ne
 
 <h3>Home Page, Nav Bar and Site Structure</h3>
 
-<p>We began the project by creating the site structure this meant creating all the components that would be used in the app. Each component had a basic function that returned its name so we could tell each component was displaying correctly. Once all components we created they we grouped into folders and imported to App.js. For the site navigation we used ‘React Router DOM’. Once the Nav Bar was created and all the components were linked we moved on to the homepage. To stick to a clean modern design we chose to hide the Nav Bar on the home page and display the three main components of the app underneath the title.</p>
+<p>We began the project by creating the site structure this meant creating all the components that would be used in the app. Each component had a basic function that returned its name so we could tell each component was displaying correctly. Once all components we created they we grouped into folders and imported to App.js. For the site navigation we used ‘React Router DOM’. Once the Nav Bar was created and all the components were linked we moved on to the homepage. To stick to a clean modern design we chose to hide the Nav Bar on the home page and display the three main components of the app underneath the title. I was responsible for creating for creating the navigation bar and the home page.</p>
 
 <h3>Coins / All Currencies Page</h3>
 
-<p>The first interactive component we created was the coins page. We started by making an API request to the Nomic API. We used Axios to make the GET request. Once testing the app was receiving the data we mapped over the data to create a table of results. The coin page consisted of one component. The ‘CoinIndex’ that held the Nav Bar and the headings for each category in the table. Each time an object was mapped over it would create a new ‘CoinCard’ component for each currency. ‘CoinCard’ was a child component of the ‘CoinIndex’ .</p>
+<p>The first interactive component we created was the coins page. We started by making an API request to the Nomic API. We used Axios to make the GET request. Once testing the app was receiving the data we mapped over the data to create a table of results. The coin page consisted of one component. The ‘CoinIndex’ that held the Nav Bar and the headings for each category in the table. Each time an object was mapped over it would create a new ‘CoinCard’ component for each currency. ‘CoinCard’ was a child component of the ‘CoinIndex’. Here Dougal(my team mate) was responsible for testing the initial GET request to the Nomics API. I was responsible for creating the, ‘Coin Index’, ’Coin Card’ and ‘Coin Show’ pages.</p>
+
+<p>The code snippet below are the functions used on the, 'Coin Index' page</p>
+
+# ![](images/coin-index-code.png) 
 
  <p>At this point we realised we were only able to request 100 results at a time. To overcome this problem we added a function that would display page numbers at the bottom of the page. A user would start on page one. When a user clicked page 2, a new GET request was made for the next 100 results. Then we added a search function that allowed a user to search for a currency by name.</p>
 
@@ -79,18 +83,33 @@ You can find a live version of the app here: [Crypto Show](https://cryptoshow.ne
 
 <h3>I Could Have Made What?</h3>
 
-<p>For this page we made a form that would capture a users data. Once we tested we were capturing the user data correctly we made another function that would take the user data and convert it to the correct form required by the Nomics API to make a historical data GET request. If data was received back from the Nomics API it would be passed into state and and a conditional statement would be used to render a result underneath the form.</p>
+<p>For this page we made a form that would capture a users data. Once we tested we were capturing the user data correctly we made another function that would take the user data and convert it to the correct form required by the Nomics API to make a historical data GET request. If data was received back from the Nomics API it would be passed into state and and a conditional statement would be used to render a result underneath the form. Dougal was responsible for creating, ‘I Could Have Made What Page?</p>
+
+<p>The code snippet below contains the function to calculate what a user could have made from either Bitcoin or Ethereum if they had invested at a particular time.</p>
+
+# ![](images/i-could-have-made-code.png) 
+
 
 <h3>Whats Hot?</h3>
-<p>We first started by researching how we could embed the twitter profiles of the top 5 ranked crypto currencies on the page and found that an NPM package called ‘React Twitter Embed’ was the best way to do this. Then we made a new function that used the same GET request we had used on the ‘CoinIndex’ page. We took the data and made a new function that compared all the 1 day price changes and pushed them into an array. It then took the top to prices from that array and sliced it into another array and took the bottom 10 prices and sliced those into another array. The results were then displayed back to page. We the added a setTimeOut to the get request so the data on the page would refresh every 10 seconds.</p>
+
+<p>We first started by researching how we could embed the twitter profiles of the top 5 ranked crypto currencies on the page and found that an NPM package called ‘React Twitter Embed’ was the best way to do this. Then we made a new function that used the same GET request we had used on the ‘CoinIndex’ page. We took the data and made a new function that compared all the 1 day price changes and pushed them into an array. It then took the top to prices from that array and sliced it into another array and took the bottom 10 prices and sliced those into another array. The results were then displayed back to page. We the added a setTimeOut to the get request so the data on the page would refresh every 10 seconds. On the ‘Whats Hot Page’ I was responsible for finding out how to and implement using the Twitter profiles of the top 5 cryptocurrencies and styling/layout of the page. Dougal was responsible for creating the ‘Biggest Gainers and Losers’ functionality.</p> 
 
 <h2>Challenges</h2>
 <p>We ran into a few challenges while building the Crypto Show App. The two biggest challenges would have were, firstly was coverting the data captured from a user into a format that the Nomics API would accept. Secondly would have been some of the object keys used in the Nomics API had irregular naming conventions that conflicted with JavaScript like having a numeral in at the start of a key name. It took a while to find a work around for this.</p>
 
-<h3>Wins</h3>
-<p>The biggest win for me was we started off we a clear idea in mind and a pretty solid plan and I feel we achieved pretty close to our original idea/plan. We did have to make a few comprises after finding out that working with a public API was not as straight forward as we initially thought.<p>
+<h2>Wins</h2>
+<p>The biggest win for me was we started off with a clear idea in mind and a pretty solid plan and I feel we achieved really close those in the end product. We did have to make a few comprises after finding out that working with a public API was not as straight forward as we initially thought.<p>
+<p>This was the first pair coded project we had both undertaken. Dougal and I worked really well as a team and both brought different strengths to the table that allowed us to make a site that looked great and was packed full of functionality.</p>
 
-<h3>Future Features</h3>
+<h2>Learnings</h2>
+<ul>
+<li>The importance of good naming conventions when creating an API</li>
+<li>Carefully read API documentation</li>
+<li>When working in a team, learn from your team mates strengths especially when it comes to areas where you’re lacking in knowledge or you feel uncomfortable</li>
+</ul>
+
+<h2>Future Features</h2>
+<p>If I had more time I would like to:</p>
 <ul>
 <li>Update 'I Could Have What!!' page to search for more than two currencies</li>
 <li>Add more content to the 'Whats Hot? page</li>

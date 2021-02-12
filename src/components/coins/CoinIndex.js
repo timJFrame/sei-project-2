@@ -1,9 +1,7 @@
-import React from 'react'
 
+import React from 'react'
 import { getAllCoins } from '../lib/api'
 import CoinCard from '../coins/CoinCard'
-
-
 
 function CoinIndex() {
   const [coins, setCoins] = React.useState(null)
