@@ -75,7 +75,47 @@ You can find a live version of the app here: [Crypto Show](https://cryptoshow.ne
 
 <p>The code snippet below are the functions used on the, 'Coin Index' page.</p>
 
-# ![](images/coin-index-code.png) 
+```
+function CoinIndex() {
+  const [coins, setCoins] = React.useState(null)
+  const [pageNumber, setPageNumber] = React.useState(1)
+  const [selectedName, setSelectedName] = React.useState('')
+
+  function increase () {
+    setPageNumber(pageNumber + 1)
+  }
+  function decrease() {
+    setPageNumber(pageNumber - 1)
+  }
+
+
+
+  React.useEffect(() => {
+    const getData = async() => {
+      try {
+        const { data } = await getAllCoins( pageNumber )
+        const filterCurrencies = () => data.filter(currency => {
+          return currency.name.toLowerCase().includes(selectedName.toLowerCase())
+        })
+        setCoins(filterCurrencies())
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+    const interval = setInterval(() => {
+      getData()
+    }, 10000)
+    return () => clearInterval(interval)
+  }, [selectedName, pageNumber])
+
+
+  const handleKeyUp = (e) => {
+    const selectedName = e.target.value
+    setSelectedName(selectedName)
+  }
+
+``` 
 
  <p>At this point we realised we were only able to request 100 results at a time. To overcome this problem we added a function that would display page numbers at the bottom of the page. A user would start on page one. When a user clicked page 2, a new GET request was made for the next 100 results. Then we added a search function that allowed a user to search for a currency by name.</p>
 
@@ -87,7 +127,56 @@ You can find a live version of the app here: [Crypto Show](https://cryptoshow.ne
 
 <p>The code snippet below contains the function to calculate what a user could have made from either Bitcoin or Ethereum if they had invested at a particular time.</p>
 
-# ![](images/i-could-have-made-code.png) 
+``` 
+async function CalculateOpportunityLoss(formdata) {
+
+  const key = process.env.REACT_APP_MY_API_KEY
+
+  const foundCurrency = []
+  let i = 1
+  while (foundCurrency.length < 1) {
+    const { data } = await getAllCoinsUSD(i)
+    const resultArray = (data.filter(coinObject => {
+      return coinObject.name === formdata.currency
+    }))
+    if (resultArray.length > 0) {
+      foundCurrency.push(resultArray)
+    } else {
+      i++
+    }
+  }
+
+  const currencyId = (formdata) => {
+    if (formdata.currency === 'Bitcoin') {
+      return 'BTC'
+    } else return 'ETH'
+  }
+
+  const relevantId = currencyId(formdata)
+  const relevantStartDate = new Date(formdata.date)
+  const formattedStartDate = relevantStartDate.toISOString()
+  const relevantEndDate = new Date(formdata.date)
+  const formattedEndDate = relevantEndDate.toISOString()
+
+  const getHistoricValue = async () => {
+    const { data } = await axios.get(`https://cors-anywhere.herokuapp.com/https://api.nomics.com/v1/exchange-rates/history?key=${key}&currency=${relevantId}&start=${formattedStartDate}&end=${formattedEndDate}` )
+    return data[0].rate
+  }
+  getHistoricValue()
+
+  const calcNumericalResult = async () => {
+    const currentValue = foundCurrency[0][0].price
+    const historicValue = await getHistoricValue()
+
+    return ((parseFloat(currentValue) / parseFloat(historicValue)) * parseFloat(formdata.amountInvested))
+  }
+
+  return (
+    await calcNumericalResult()
+  )
+}
+
+```
 
 
 <h3>Whats Hot?</h3>
